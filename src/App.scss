@@ -6,4 +6,42 @@ body{
   h1{
     color: gold;
   }
+  form{
+    fieldset{
+      margin: 2rem 2rem 2rem 0;
+      padding: 1.5rem 2rem 2rem 2rem;
+      border: solid 1px #ccc;
+      border-radius: 10px;
+       
+       
+      background-color: #2a2a2a;
+      legend{
+        padding: 0 1rem;
+        color: rgb(200, 169, 110) !important;
+      }
+      
+    
+      .row{
+        margin: 1rem 0;
+        label{
+          display: flex;
+        padding: .5rem 0;
+          &::after{
+            content: ":";
+          }
+        }
+        input{
+          padding: .5em;
+          width: 96%;
+          margin-bottom: .5rem;
+          
+        }
+        textarea{
+          resize: none;
+          width: 98%;
+          height: 6rem;
+        }
+      }
+    }
+  }
 }

@@ -6,50 +6,54 @@ import { IJob } from "./interfaces";
 const _formData = {
   jobTitle: "",
   description: "",
+  city: "",
 };
 
 const backendUrl = "http://localhost:5557";
 
 function App() {
   const [formData, setFormData] = useState(_formData);
-
   const [jobs, setJobs] = useState<IJob[]>([]);
+
+  // nicht wiederholen packen in eine fkt
+  const getJobs = async () => {
+    const _jobs = (await axios.get(`${backendUrl}/jobs`)).data;
+    console.log(_jobs);
+    setJobs(_jobs);
+  };
 
   const handleFieldChange = (e: any, fieldName: string) => {
     e.preventDefault();
     const value = e.target.value;
-    //statevariable value ändern
-    // einzeln
-    //formData.jobTitle = value;
-    //setFormData({ ...formData });
-
-    //mehrere
-    // switch (fieldName) {
-    //   case "jobTitle":
-    //     formData.jobTitle = value;
-    //     break;
-    //   case "description":
-    //     formData.description = value;
-    //     break;
-    // }
-    //   setFormData({ ...formData });
-    // oder
-
     setFormData({ ...formData, [fieldName]: value });
   };
 
   //
   useEffect(() => {
-    (async () => {
-      const response = (await axios.get(`${backendUrl}/jobs`)).data;
-      console.log(response);
-      setJobs(response);
-    })();
+    // nicht wiederholen für get jobs wir packen in eine fkt
+    // (async () => {
+    //   const response = (await axios.get(`${backendUrl}/jobs`)).data;
+    //   console.log(response);
+    //   setJobs(response);
+    //})();
+    getJobs();
   }, []);
 
   const handleSaveForm = (e: any) => {
     e.preventDefault();
-    console.log("redd");
+    (async () => {
+      const response = await axios.post(`${backendUrl}/jobs`, formData);
+      getJobs();
+      //form entleeren anch speichern
+      setFormData(_formData);
+      console.log("success");
+    })();
+  };
+  const handleDeleteJob = (job: IJob) => {
+    (async () => {
+      const deleteJob = await axios.delete(`${backendUrl}/jobs/${job.id}`);
+      getJobs();
+    })();
   };
 
   return (
@@ -80,6 +84,18 @@ function App() {
                 />
               </div>
             </div>
+            <div className="row">
+              <label>City</label>
+              <div>
+                <select onClick={(e) => handleFieldChange(e, "city")}>
+                  <option value={formData.city}>(Please Choose...)</option>
+                  <option value="hamburg">Hamburg</option>
+                  <option value="berlin">Berlin</option>
+                  <option value="hannover">Hannover</option>
+                  <option value="mainz">Mainz</option>
+                </select>
+              </div>
+            </div>
             <div className="buttonArea">
               <button onClick={(e) => handleSaveForm(e)}>Save</button>
             </div>
@@ -92,7 +108,13 @@ function App() {
           {jobs.map((job) => {
             return (
               <div key={job.id} className="job">
-                <div className="title">{job.jobTitle}</div>
+                <div className="title">
+                  {job.jobTitle} (
+                  <span onClick={() => handleDeleteJob(job)} className="delete">
+                    delete
+                  </span>
+                  )
+                </div>
               </div>
             );
           })}

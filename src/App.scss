@@ -27,11 +27,11 @@ body{
         label{
         display: block;
         padding: .5rem 0;
-      &::after{
+        &::after{
         content: ":";
         }
-      }
-      input{
+        }
+         input{
          width: 100%;
          padding: .5rem;
         
@@ -43,6 +43,9 @@ body{
           padding: .5rem;
            
         }
+        
+          
+        
       }
       .buttonArea{
         button{
@@ -54,7 +57,20 @@ body{
   }
   .currentJobs{
     padding: 1rem 0;
+    .job{
+.title{
+  margin-bottom: .5rem ;
+  .delete{
+    color: rgb(153, 26, 26);
+    text-decoration: underline;
+
+    &:hover{
+cursor: pointer;
     
+    }
+  }
+}
+    }
   }
 }
 .debuggingArea{

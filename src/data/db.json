@@ -1,12 +1,7 @@
 {
   "jobs": [
     {
-      "id": 1,
-      "jobTitle": "React developer",
-      "description": "this is a good job"
-    },
-    {
-      "id": 2,
+      "id": "2",
       "jobTitle": "Angular developer ",
       "description": "this is a good job 2"
     },
@@ -16,9 +11,31 @@
       "description": "Requires vue.js "
     },
     {
-      "id": "7f66",
+      "id": "9474",
+      "jobTitle": "C# developer",
+      "description": "wordpress frameworks"
+    },
+    {
+      "id": "08fe",
+      "jobTitle": "Rust developer",
+      "description": "Rust developer"
+    },
+    {
+      "id": "2ac7",
       "jobTitle": "PHP Developer",
       "description": "Requires vue.js "
+    },
+    {
+      "id": "7ec5",
+      "jobTitle": "JavaScript Developer",
+      "description": "Teamfähigkeit",
+      "city": "hamburg"
+    },
+    {
+      "id": "118d",
+      "jobTitle": "Kotlin Developer",
+      "description": "Kotlin Developer (delete)",
+      "city": "mainz"
     }
   ]
 }

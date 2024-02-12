@@ -3,6 +3,9 @@
 ### GET JOBS
 GET {{url}}/jobs
 
+### GET JOB
+GET {{url}}/jobs/ca63
+
 ### POST JOB
 
 POST {{url}}/jobs
@@ -12,3 +15,6 @@ content-type:application/json
     "jobTitle":"PHP Developer",
     "description": "Requires vue.js "
 }
+
+### DELETE JOB
+DELETE {{url}}/jobs/7f66

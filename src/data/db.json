@@ -1,11 +1,24 @@
 {
-    "jobs":[
-        {
-            "jobTitle":"RRRR react developer",
-            "description":"this is a good job"
-        },  {
-            "jobTitle":"react developer 2",
-            "description":"this is a good job 2"
-        }
-    ]
+  "jobs": [
+    {
+      "id": 1,
+      "jobTitle": "React developer",
+      "description": "this is a good job"
+    },
+    {
+      "id": 2,
+      "jobTitle": "Angular developer ",
+      "description": "this is a good job 2"
+    },
+    {
+      "id": "ca63",
+      "jobTitle": "Vue.js Developer",
+      "description": "Requires vue.js "
+    },
+    {
+      "id": "7f66",
+      "jobTitle": "PHP Developer",
+      "description": "Requires vue.js "
+    }
+  ]
 }

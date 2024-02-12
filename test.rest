@@ -7,7 +7,6 @@ GET {{url}}/jobs
 GET {{url}}/jobs/ca63
 
 ### POST JOB
-
 POST {{url}}/jobs
 content-type:application/json
 

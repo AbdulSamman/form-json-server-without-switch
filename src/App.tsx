@@ -7,6 +7,11 @@ const _formData = {
   jobTitle: "",
   description: "",
   city: "",
+  details: {
+    remote: false,
+    fullTime: false,
+    largeCompany: false,
+  },
 };
 
 const backendUrl = "http://localhost:5557";
@@ -25,9 +30,25 @@ function App() {
   const handleFieldChange = (e: any, fieldName: string) => {
     e.preventDefault();
     const value = e.target.value;
-    setFormData({ ...formData, [fieldName]: value });
+    if (value === "/brr") {
+      formData.jobTitle = "React Developer";
+      formData.city = "hannover";
+      formData.details.remote = true;
+      setFormData({ ...formData });
+    } else {
+      setFormData({ ...formData, [fieldName]: value });
+    }
   };
-
+  const handleCheckBox = (e: any, boxName: string) => {
+    const checked = e.target.checked;
+    setFormData({
+      ...formData,
+      details: {
+        ...formData.details,
+        [boxName]: checked,
+      },
+    });
+  };
   //
   useEffect(() => {
     // nicht wiederholen für get jobs wir packen in eine fkt
@@ -88,12 +109,41 @@ function App() {
               <label>City</label>
               <div>
                 <select onClick={(e) => handleFieldChange(e, "city")}>
-                  <option value={formData.city}>(Please Choose...)</option>
+                  <option value="">(Please Choose...)</option>
                   <option value="hamburg">Hamburg</option>
                   <option value="berlin">Berlin</option>
                   <option value="hannover">Hannover</option>
                   <option value="mainz">Mainz</option>
                 </select>
+              </div>
+            </div>
+            <div className="row">
+              <label>Details</label>
+              <div>
+                <div>
+                  <input
+                    type="checkbox"
+                    checked={formData.details.remote}
+                    onChange={(e) => handleCheckBox(e, "remote")}
+                  />
+                  remote
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    checked={formData.details.fullTime}
+                    onChange={(e) => handleCheckBox(e, "fullTime")}
+                  />
+                  full-time
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    checked={formData.details.largeCompany}
+                    onChange={(e) => handleCheckBox(e, "largeCompany")}
+                  />
+                  large company
+                </div>
               </div>
             </div>
             <div className="buttonArea">
